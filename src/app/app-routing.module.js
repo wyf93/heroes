@@ -6,40 +6,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var platform_browser_1 = require("@angular/platform-browser");
-var forms_1 = require("@angular/forms"); // <-- NgModel lives here
-var app_component_1 = require("./app.component");
+var router_1 = require("@angular/router");
 var dashboard_component_1 = require("./dashboard.component");
 var heroes_component_1 = require("./heroes.component");
 var hero_detail_component_1 = require("./hero-detail.component");
-var hero_service_1 = require("./hero.service");
-var app_routing_module_1 = require("./app-routing.module");
-var AppModule = (function () {
-    function AppModule() {
+var routes = [
+    { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+    { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
+    { path: 'detail/:id', component: hero_detail_component_1.HeroDetailComponent },
+    { path: 'heroes', component: heroes_component_1.HeroesComponent }
+];
+var AppRoutingModule = (function () {
+    function AppRoutingModule() {
     }
-    return AppModule;
+    return AppRoutingModule;
 }());
-AppModule = __decorate([
+AppRoutingModule = __decorate([
     core_1.NgModule({
-        imports: [
-            platform_browser_1.BrowserModule,
-            forms_1.FormsModule,
-            app_routing_module_1.AppRoutingModule
-        ],
-        declarations: [
-            app_component_1.AppComponent,
-            dashboard_component_1.DashboardComponent,
-            heroes_component_1.HeroesComponent,
-            hero_detail_component_1.HeroDetailComponent
-        ],
-        providers: [hero_service_1.HeroService],
-        bootstrap: [app_component_1.AppComponent]
+        imports: [router_1.RouterModule.forRoot(routes)],
+        exports: [router_1.RouterModule]
     })
-], AppModule);
-exports.AppModule = AppModule;
+], AppRoutingModule);
+exports.AppRoutingModule = AppRoutingModule;
 /*
 Copyright 2017 Google Inc. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
 can be found in the LICENSE file at http://angular.io/license
 */ 
-//# sourceMappingURL=app.module.js.map
+//# sourceMappingURL=app-routing.module.js.map
